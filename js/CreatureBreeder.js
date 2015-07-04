@@ -33,7 +33,7 @@ function createNewDiv (input, index) {
   btn.style.position = 'relative';
   btn.style.top = '300px';
   newDiv.appendChild(btn);
-  var btnTxt = document.createTextNode("BUTTON TEXT");
+  var btnTxt = document.createTextNode("Breed");
   btn.appendChild(btnTxt);
 
   newDiv.style.backgroundColor = input.colour;
