@@ -82,14 +82,21 @@ function createNewDiv (input, index) {
   btn.appendChild(btnTxt);
 
   
+  
   btn.onclick = function() {
     if (currentFather == null) {
       currentFather = newDiv.id;
+      newDiv.style.color = "#f7ff00";
     } else {
       currentMother = newDiv.id;
-      Breed(currentFather, currentMother);
+      if (currentMother != currentFather) {
+        Breed(currentFather, currentMother);
+      }
       currentMother = null;
       currentFather = null;
+      $(".creatureDiv").each(function(i) {
+        $(this).css("color", "initial")
+      });  
     }
   }
   
