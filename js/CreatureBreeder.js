@@ -15,10 +15,10 @@ var UlastNames  = ['Sparkle', 'Dis Lee', 'Lulamoon', 'Song', 'Dancer', 'Armor', 
 $(document).ready(function() {
   
 
-  creatures.push(new creature("Celestia","#FDF8FE", "UU", "N/A"));
+  creatures.push(new creature("Celestia","#FDF8FE", "EU", "N/A"));
   createNewDiv(creatures[creatures.length-1], creatures.length-1);
   
-  creatures.push(new creature("Luna","#404680", "PP", "N/A"));
+  creatures.push(new creature("Luna","#404680", "EP", "N/A"));
   createNewDiv(creatures[creatures.length-1], creatures.length-1);
   
 });
