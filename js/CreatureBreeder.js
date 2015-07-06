@@ -42,6 +42,7 @@ function createNewDiv (input, index) {
   cross.onclick = function() {
     if (input.name != "Celestia") {
       document.body.removeChild(newDiv);
+      //creatures.splice(newDiv.id);
     } else {
       window.open('http://mlp.wikia.com/wiki/Princess_Celestia');
     }
