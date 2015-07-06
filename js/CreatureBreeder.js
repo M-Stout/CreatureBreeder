@@ -59,6 +59,13 @@ function createNewDiv (input, index) {
     wing.style.bottom = '198px';
     pictureBack.appendChild(wing);
   }
+  if (input.name == "Celestia" || input.name == "Luna") {
+    var alicorn = document.createElement('object');
+    alicorn.data = 'images/alicorn.svg';
+    alicorn.className = 'ponyPic';
+    alicorn.style.bottom = '198px';
+    pictureBack.appendChild(alicorn);
+  }
   newDiv.appendChild(pictureBack);
   
   var br = document.createElement('br');
@@ -86,7 +93,21 @@ function createNewDiv (input, index) {
   var br = document.createElement('br');
   newDiv.appendChild(br);
   
-  var speciesTxt = document.createTextNode("Species: " + findSpecies(input.species));
+  if (input.name == "Celestia" || input.name == "Luna") {
+    var speciesTxt = document.createTextNode("Species: " + "Alicorn");   
+  } else {
+    switch (findSpecies(input.species)) {
+        case "E":
+          var speciesTxt = document.createTextNode("Species: " + "Earth Pony");
+          break;
+        case "P":
+          var speciesTxt = document.createTextNode("Species: " + "Pegasus");
+          break;
+        case "U":
+          var speciesTxt = document.createTextNode("Species: " + "Unicorn");
+          break;
+      }
+  }
   newDiv.appendChild(speciesTxt);
   
   var br = document.createElement('br');
