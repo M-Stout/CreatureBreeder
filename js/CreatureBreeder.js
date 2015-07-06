@@ -15,10 +15,10 @@ var UlastNames  = ['Sparkle', 'Dis Lee', 'Lulamoon', 'Song', 'Dancer', 'Armor', 
 $(document).ready(function() {
   
 
-  creatures.push(new creature("Celestia","#FDF8FE", "EU", "N/A"));
+  creatures.push(new creature("Celestia","#FDF8FE", "EU", "N/A", 1.2));
   createNewDiv(creatures[creatures.length-1], creatures.length-1);
   
-  creatures.push(new creature("Luna","#404680", "EP", "N/A"));
+  creatures.push(new creature("Luna","#404680", "EP", "N/A", 1.2));
   createNewDiv(creatures[creatures.length-1], creatures.length-1);
   
 });
@@ -33,6 +33,20 @@ function createNewDiv (input, index) {
   newDiv.style.borderColor = $.xcolor.darken($.xcolor.complementary(input.colour));
   document.body.appendChild(newDiv);
   
+  var cross = document.createElement('BUTTON');
+  cross.style.float = "right";
+  newDiv.appendChild(cross);
+  var deleteTxt = document.createTextNode("X");
+  cross.appendChild(deleteTxt);
+  
+  cross.onclick = function() {
+    if (input.name != "Celestia") {
+      document.body.removeChild(newDiv);
+    } else {
+      window.open('http://mlp.wikia.com/wiki/Princess_Celestia');
+    }
+  }
+  
   var heading = document.createElement("H2");
   var nmeTxt = document.createTextNode(input.name);
   heading.appendChild(nmeTxt);
@@ -41,31 +55,19 @@ function createNewDiv (input, index) {
   var pictureBack = document.createElement('div');
   pictureBack.style.backgroundColor = input.colour;
   pictureBack.style.height = '191px';
+  
   var picture = document.createElement('object');
-  picture.data = 'images/ponyBodyExEyes.svg';
+  if (input.name == "Celestia" || input.name == "Luna") {
+    picture.data = 'images/alicorn.svg';
+  } else if (findSpecies(input.species) == "E") {
+    picture.data = 'images/ponyBodyExEyes.svg';
+  } else if (findSpecies(input.species) == "U") {
+    picture.data = 'images/horn.svg';
+  } else if (findSpecies(input.species) == "P") {
+    picture.data = 'images/wing.svg';
+  }
   picture.className = 'ponyPic';
   pictureBack.appendChild(picture);
-  if (findSpecies(input.species) == "U") {
-    var horn = document.createElement('object');
-    horn.data = 'images/horn.svg';
-    horn.className = 'ponyPic';
-    horn.style.bottom = '198px';
-    pictureBack.appendChild(horn);
-  }
-  if (findSpecies(input.species) == "P") {
-    var wing = document.createElement('object');
-    wing.data = 'images/wing.svg';
-    wing.className = 'ponyPic';
-    wing.style.bottom = '198px';
-    pictureBack.appendChild(wing);
-  }
-  if (input.name == "Celestia" || input.name == "Luna") {
-    var alicorn = document.createElement('object');
-    alicorn.data = 'images/alicorn.svg';
-    alicorn.className = 'ponyPic';
-    alicorn.style.bottom = '198px';
-    pictureBack.appendChild(alicorn);
-  }
   newDiv.appendChild(pictureBack);
   
   var br = document.createElement('br');
@@ -122,11 +124,25 @@ function createNewDiv (input, index) {
   var parentsTxt = document.createTextNode("Parents: " + input.parents);
   newDiv.appendChild(parentsTxt);
   
+  var br = document.createElement('br');
+  newDiv.appendChild(br);
+  
+  if (input.name == "Celestia" || input.name == "Luna") {
+    var heightTxt = document.createTextNode("Height: " + 1.8);
+  } else {
+    var heightTxt = document.createTextNode("Height: " + input.height);
+  }
+  newDiv.appendChild(heightTxt);
+  
 }
 
 function Breed (father, mother) {
-    
-  var newColour = $.xcolor.breed(creatures[mother].colour, creatures[father].colour);
+  
+  if (creatures[mother].name == "Celestia" || creatures[father].name == "Celestia") {
+    var newColour = $.xcolor.random();
+  } else {
+    var newColour = $.xcolor.breed(creatures[mother].colour, creatures[father].colour);
+  }
   
   var alleleRandom = Math.floor(Math.random() * 4);
   switch (alleleRandom) {
@@ -158,8 +174,9 @@ function Breed (father, mother) {
   }
   
   var newParents = creatures[mother].name + " + " + creatures[father].name;
+  var newHeight = (creatures[mother].height + creatures[father].height)/2  + Math.round(100*(Math.random()/100)-0.05)/100;
   
-  creatures.push(new creature(newName, newColour, newSpecies, newParents));
+  creatures.push(new creature(newName, newColour, newSpecies, newParents, newHeight));
   createNewDiv(creatures[creatures.length-1], creatures.length-1);
   
 }
@@ -181,9 +198,10 @@ function findSpecies (input) {
 }
 
 
-function creature (name, colour, species, parents) {
+function creature (name, colour, species, parents, height) {
   this.name = name;
   this.colour = colour;
   this.species = species;
-  this.parents = parents;  
+  this.parents = parents; 
+  this.height = height;
 }
