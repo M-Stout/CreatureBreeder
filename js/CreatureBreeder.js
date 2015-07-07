@@ -29,10 +29,10 @@ $(document).ready(function() {
   
   
 
-  creatures.push(new creature("Celestia","#FDF8FE", "EU", "N/A", 1.2, 'Raising the sun'));
+  creatures.push(new creature("Celestia","#FDF8FE", "Eu", "N/A", 1.2, 'Raising the sun'));
   createNewDiv(creatures[creatures.length-1], creatures.length-1);
   
-  creatures.push(new creature("Luna","#404680", "EP", "N/A", 1.2, 'Raising the moon'));
+  creatures.push(new creature("Luna","#404680", "Ep", "N/A", 1.2, 'Raising the moon'));
   createNewDiv(creatures[creatures.length-1], creatures.length-1);
     
 });
@@ -255,6 +255,12 @@ function Breed (father, mother) {
       var newSpecies = creatures[father].species.charAt(1) + creatures[mother].species.charAt(1);
       break;
   }
+  newSpecies = newSpecies.toUpperCase();
+  
+  if (newSpecies.charAt(1) == 'E') {
+    newSpecies = 'E' + newSpecies.charAt(0);
+  }
+  newSpecies = newSpecies.charAt(0) + newSpecies.charAt(1).toLowerCase();
   
   switch (findSpecies(newSpecies)) {
     case "E":
