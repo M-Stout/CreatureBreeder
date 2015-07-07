@@ -3,28 +3,20 @@ var creatures = [];
 var currentFather = null;
 var currentMother = null;
 
-var EfirstNames = ['Apple', 'Apple', 'Apple', 'Apple', 'Pinkie', 'Aloe', 'Cherry', 'Coco', 'Goldie', 'June', 'Lotus', 'Roma', 'Tree', 'Cheese', 'Carrot', 'Silver', 'Gold', 'Maud', 'Lavender', 'Peachy', 'Butter', 'Candy', 'Coral', 'Daisy', 'Grape', 'Lucky', 'Oakey', 'Octavia', 'Ace', 'Fuzzy'];
-var PfirstNames = ['Flutter', 'Rainbow', 'Lucky', 'Clear', 'Cloud', 'Daring', 'Derpy', 'Ditzy', 'Flash', 'Fluffy', 'Hoops', 'Stellar', 'Soar', 'Spit', 'High', 'Lightning', 'Silver', 'Wave', 'Fast', 'Star', 'Storm', 'Thunder', 'Buddy', 'Jet', 'Prism', 'Fleet', 'Pegasus', 'Rainbow'];
-var UfirstNames = ['Rarity', 'Twilight', 'Fancy', 'Fleur', 'Flim', 'Flam', 'Moon', 'Shining', 'Starlight', 'Sunset', 'Trixie', 'Night', 'Amethyst', 'Arpeggio', 'Bright', 'Cipher', 'Comet', 'Crystal', 'Infinity', 'Neon', 'Precious', 'Royal', 'Star', 'Twinkle', 'Top', 'DJ'];
+var EfirstNames = ['Apple', 'Apple', 'Apple', 'Apple', 'Pinkie', 'Aloe', 'Cherry', 'Coco', 'Goldie', 'June', 'Lotus', 'Roma', 'Tree', 'Cheese', 'Carrot', 'Silver', 'Gold', 'Maud', 'Lavender', 'Peachy', 'Butter', 'Candy', 'Coral', 'Daisy', 'Grape', 'Lucky', 'Oakey', 'Octavia', 'Ace', 'Fuzzy', 'May', 'Sunflower', 'Petal', 'Kat', 'Biscuit', 'Gaia', 'Cookie', 'Chip', 'Blossom', 'Cinnamon', 'Hazel', 'Vixen', 'Sugar', 'Bluebell', 'Clover', 'Peony', 'Butter', 'Flora','Berry',];
+var PfirstNames = ['Flutter', 'Rainbow', 'Lucky', 'Clear', 'Cloud', 'Daring', 'Derpy', 'Ditzy', 'Flash', 'Fluffy', 'Hoops', 'Stellar', 'Soar', 'Spit', 'High', 'Lightning', 'Silver', 'Wave', 'Fast', 'Star', 'Storm', 'Thunder', 'Buddy', 'Jet', 'Prism', 'Fleet', 'Pegasus', 'Rainbow', 'Flare', 'Blizzard', 'Dust', 'Frost', 'Misty', 'Radar', 'Sea', 'Zigzag', 'Lexa', 'Atlas', 'Titan', 'Turbo', 'Draco', 'Scorpio', 'Saphira', 'Spyro', 'Rogue', 'Thorn',];
+var UfirstNames = ['Rarity', 'Twilight', 'Fancy', 'Fleur', 'Flim', 'Flam', 'Moon', 'Shining', 'Starlight', 'Sunset', 'Trixie', 'Night', 'Amethyst', 'Arpeggio', 'Bright', 'Cipher', 'Comet', 'Crystal', 'Infinity', 'Neon', 'Precious', 'Royal', 'Star', 'Twinkle', 'Top', 'DJ', 'Aurora', 'Nebula', 'Umbra', 'Glaze', 'Nova', 'Dawn', 'Astra', 'Mystic',];
 
-var ElastNames  = ['Jack', 'Pie', 'Pie', 'Jubilee', 'Delicious', 'Smith', 'Blossom', 'Mare', 'Song', 'Sandwich', 'Diamond', 'Cake', 'Shill', 'Cider', 'Leaves', 'Orange', 'Sweet', 'Rock', 'Cap', 'Flower', 'Bloom', 'Harvest', 'Valley', 'Drops'];
-var PlastNames  = ['Shy', 'Dash', 'Laurels', 'Skies', 'Chaser', 'Glider', 'Streak', 'Chill', 'Dust', 'Wind', 'Strike', 'Drop', 'Swoop', 'Hunter', 'Burst', 'Feather', 'Lane', 'Shot', 'Cloud', 'Clouds', 'Star', 'Break', 'Swirl', 'Falls', 'Spirits', 'Rays', 'Stream', 'Gale', 'Lights', 'Wing', 'Dancer'];
-var UlastNames  = ['Sparkle', 'Dis Lee', 'Lulamoon', 'Song', 'Dancer', 'Armor', 'Glimmer', 'Shimmer', 'Velvet', 'Light', 'Star', 'Moon', 'Bulb', 'Sun', 'Tail', 'Coronet', 'Gem', 'Shade', 'Ribbon', 'Swirl', 'Bright', 'Dream', 'Dreams', 'Shine', 'Gala', 'Fare'];
+var ElastNames  = ['Jack', 'Pie', 'Pie', 'Jubilee', 'Delicious', 'Smith', 'Blossom', 'Mare', 'Song', 'Sandwich', 'Diamond', 'Cake', 'Shill', 'Cider', 'Leaves', 'Orange', 'Sweet', 'Rock', 'Cap', 'Flower', 'Bloom', 'Harvest', 'Valley', 'Drops', 'Chip', 'Roll', 'Almond', 'Peanut', 'Chestnut', 'Honey', 'Lemon', 'Meadow', 'Muffin',];
+var PlastNames  = ['Shy', 'Dash', 'Laurels', 'Skies', 'Chaser', 'Glider', 'Streak', 'Chill', 'Dust', 'Wind', 'Strike', 'Drop', 'Swoop', 'Hunter', 'Burst', 'Feather', 'Lane', 'Shot', 'Cloud', 'Clouds', 'Star', 'Break', 'Swirl', 'Falls', 'Spirits', 'Rays', 'Stream', 'Gale', 'Lights', 'Wing', 'Dancer', 'Breeze', 'Rocket', 'Sunset',];
+var UlastNames  = ['Sparkle', 'Dis Lee', 'Lulamoon', 'Song', 'Dancer', 'Armor', 'Glimmer', 'Shimmer', 'Velvet', 'Light', 'Star', 'Moon', 'Bulb', 'Sun', 'Tail', 'Coronet', 'Gem', 'Shade', 'Ribbon', 'Swirl', 'Bright', 'Dream', 'Dreams', 'Shine', 'Gala', 'Fare', 'Equinox', 'Dawn', 'Opal', 'Topaz', 'Aura',];
 
 var ETalents = ['Baking', 'Party planning', 'Orchard management', 'Jam-making', 'Performing music', 'Mining', 'Rock farming', 'Farming', 'Spa  coordinator', 'Receptionist', ];
 var PTalents = ['Formation flying', 'Weather control', 'Weather creation', 'Snowflake decorating', ];
-var UTalents = ['Dress making', 'Fashion', 'Library management', 'Institutional management', ];
+var UTalents = ['Dress making', 'Fashion', 'Library management', 'Institutional management', 'Performing music', ];
 
 
 $(document).ready(function() {
-  
-
-  creatures.push(new creature("Celestia","#FDF8FE", "EU", "N/A", 1.2, 'Raising the sun'));
-  createNewDiv(creatures[creatures.length-1], creatures.length-1);
-  
-  creatures.push(new creature("Luna","#404680", "EP", "N/A", 1.2, 'Raising the moon'));
-  createNewDiv(creatures[creatures.length-1], creatures.length-1);
-  
   
   var customBtn = document.createElement('BUTTON');
   customBtn.style.position = 'absolute';
@@ -33,9 +25,15 @@ $(document).ready(function() {
   
   var customBtnTxt = document.createTextNode("Custom Pony Creator");
   customBtn.appendChild(customBtnTxt);
-
-
   
+  
+
+  creatures.push(new creature("Celestia","#FDF8FE", "EU", "N/A", 1.2, 'Raising the sun'));
+  createNewDiv(creatures[creatures.length-1], creatures.length-1);
+  
+  creatures.push(new creature("Luna","#404680", "EP", "N/A", 1.2, 'Raising the moon'));
+  createNewDiv(creatures[creatures.length-1], creatures.length-1);
+    
 });
 
 
