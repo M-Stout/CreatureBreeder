@@ -3,11 +3,11 @@ var creatures = [];
 var currentFather = null;
 var currentMother = null;
 
-var EfirstNames = ['Apple', 'Apple', 'Apple', 'Apple', 'Pinkie', 'Aloe', 'Cherry', 'Coco', 'Goldie', 'June', 'Lotus', 'Roma', 'Tree', 'Cheese', 'Carrot', 'Silver', 'Gold', 'Maud', 'Lavender', 'Peachy', 'Butter', 'Candy', 'Coral', 'Daisy', 'Grape', 'Lucky', 'Oakey', 'Octavia', 'Ace', 'Fuzzy', 'May', 'Sunflower', 'Petal', 'Kat', 'Biscuit', 'Gaia', 'Cookie', 'Chip', 'Blossom', 'Cinnamon', 'Hazel', 'Vixen', 'Sugar', 'Bluebell', 'Clover', 'Peony', 'Butter', 'Flora','Berry',];
+var EfirstNames = ['Apple', 'Apple', 'Apple', 'Apple', 'Pinkie', 'Aloe', 'Cherry', 'Coco', 'Goldie', 'June', 'Lotus', 'Roma', 'Tree', 'Cheese', 'Carrot', 'Silver', 'Gold', 'Maud', 'Lavender', 'Peachy', 'Butter', 'Candy', 'Coral', 'Daisy', 'Grape', 'Lucky', 'Oakey', 'Octavia', 'Ace', 'Fuzzy', 'Sunflower', 'Petal', 'Kat', 'Biscuit', 'Gaia', 'Cookie', 'Chip', 'Blossom', 'Cinnamon', 'Hazel', 'Vixen', 'Sugar', 'Bluebell', 'Clover', 'Peony', 'Butter', 'Flora','Berry',];
 var PfirstNames = ['Flutter', 'Rainbow', 'Lucky', 'Clear', 'Cloud', 'Daring', 'Derpy', 'Ditzy', 'Flash', 'Fluffy', 'Hoops', 'Stellar', 'Soar', 'Spit', 'High', 'Lightning', 'Silver', 'Wave', 'Fast', 'Star', 'Storm', 'Thunder', 'Buddy', 'Jet', 'Prism', 'Fleet', 'Pegasus', 'Rainbow', 'Flare', 'Blizzard', 'Dust', 'Frost', 'Misty', 'Radar', 'Sea', 'Zigzag', 'Lexa', 'Atlas', 'Titan', 'Turbo', 'Draco', 'Scorpio', 'Saphira', 'Spyro', 'Rogue', 'Thorn',];
 var UfirstNames = ['Rarity', 'Twilight', 'Fancy', 'Fleur', 'Flim', 'Flam', 'Moon', 'Shining', 'Starlight', 'Sunset', 'Trixie', 'Night', 'Amethyst', 'Arpeggio', 'Bright', 'Cipher', 'Comet', 'Crystal', 'Infinity', 'Neon', 'Precious', 'Royal', 'Star', 'Twinkle', 'Top', 'DJ', 'Aurora', 'Nebula', 'Umbra', 'Glaze', 'Nova', 'Dawn', 'Astra', 'Mystic',];
 
-var ElastNames  = ['Jack', 'Pie', 'Pie', 'Jubilee', 'Delicious', 'Smith', 'Blossom', 'Mare', 'Song', 'Sandwich', 'Diamond', 'Cake', 'Shill', 'Cider', 'Leaves', 'Orange', 'Sweet', 'Rock', 'Cap', 'Flower', 'Bloom', 'Harvest', 'Valley', 'Drops', 'Chip', 'Roll', 'Almond', 'Peanut', 'Chestnut', 'Honey', 'Lemon', 'Meadow', 'Muffin',];
+var ElastNames  = ['Jack', 'Pie', 'Pie', 'Jubilee', 'Delicious', 'Smith', 'Blossom', 'Mare', 'Song', 'Sandwich', 'Diamond', 'Cake', 'Shill', 'Cider', 'Leaves', 'Orange', 'Sweet', 'Rock', 'Cap', 'Flower', 'Bloom', 'Harvest', 'Valley', 'Drops', 'Chip', 'Roll', 'Almond', 'Chestnut', 'Honey', 'Lemon', 'Meadow', 'Muffin',];
 var PlastNames  = ['Shy', 'Dash', 'Laurels', 'Skies', 'Chaser', 'Glider', 'Streak', 'Chill', 'Dust', 'Wind', 'Strike', 'Drop', 'Swoop', 'Hunter', 'Burst', 'Feather', 'Lane', 'Shot', 'Cloud', 'Clouds', 'Star', 'Break', 'Swirl', 'Falls', 'Spirits', 'Rays', 'Stream', 'Gale', 'Lights', 'Wing', 'Dancer', 'Breeze', 'Rocket', 'Sunset',];
 var UlastNames  = ['Sparkle', 'Dis Lee', 'Lulamoon', 'Song', 'Dancer', 'Armor', 'Glimmer', 'Shimmer', 'Velvet', 'Light', 'Star', 'Moon', 'Bulb', 'Sun', 'Tail', 'Coronet', 'Gem', 'Shade', 'Ribbon', 'Swirl', 'Bright', 'Dream', 'Dreams', 'Shine', 'Gala', 'Fare', 'Equinox', 'Dawn', 'Opal', 'Topaz', 'Aura',];
 
@@ -43,7 +43,7 @@ function createNewDiv (input, index) {
   var newDiv = document.createElement('div');
   newDiv.id = index;
   newDiv.className = 'creatureDiv';
-  /* newDiv.style.color = $.xcolor.complementary(input.colour); */
+  newDiv.style.textShadow = "0px 0px 25px" + $.xcolor.complementary(input.colour);
   newDiv.style.borderColor = $.xcolor.darken($.xcolor.complementary(input.colour));
   document.body.appendChild(newDiv);
   
