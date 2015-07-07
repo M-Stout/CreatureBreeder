@@ -20,6 +20,7 @@ $(document).ready(function() {
   
   var customBtn = document.createElement('BUTTON');
   customBtn.style.position = 'absolute';
+  customBtn.style.left = '0px';
   customBtn.onclick = customPony;
   document.body.appendChild(customBtn);
   
@@ -180,8 +181,13 @@ function createNewDiv (input, index) {
   
   var br = document.createElement('br');
   newDiv.appendChild(br);
-    
-  var colourTxt = document.createTextNode("Coat colour: " + ntc.name(String(input.colour))[1]);
+  
+  if (input.name == "Celestia") {
+    var colourTxt = document.createTextNode("Coat colour: " + "Rainbow");
+  } else {
+    var colourTxt = document.createTextNode("Coat colour: " + ntc.name(String(input.colour))[1]);  
+  }
+  
   newDiv.appendChild(colourTxt);
   
   var br = document.createElement('br');
@@ -222,7 +228,7 @@ function Breed (father, mother) {
     var newColour = $.xcolor.breed(creatures[mother].colour, creatures[father].colour);
   }
   
-  var alleleRandom = Math.floor(Math.random() * 4);
+  var alleleRandom = Math.floor(Math.random() * 8);
   switch (alleleRandom) {
     case 0:
       var newSpecies = creatures[mother].species.charAt(0) + creatures[father].species.charAt(0);
@@ -236,7 +242,18 @@ function Breed (father, mother) {
     case 3:
       var newSpecies = creatures[mother].species.charAt(1) + creatures[father].species.charAt(1);
       break;
-
+    case 4:
+      var newSpecies = creatures[father].species.charAt(0) + creatures[mother].species.charAt(0);
+      break;
+    case 5:
+      var newSpecies = creatures[father].species.charAt(0) + creatures[mother].species.charAt(1);
+      break;
+    case 6:
+      var newSpecies = creatures[father].species.charAt(1) + creatures[mother].species.charAt(0);
+      break;
+    case 7:
+      var newSpecies = creatures[father].species.charAt(1) + creatures[mother].species.charAt(1);
+      break;
   }
   
   switch (findSpecies(newSpecies)) {
