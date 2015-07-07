@@ -11,14 +11,18 @@ var ElastNames  = ['Jack', 'Pie', 'Pie', 'Jubilee', 'Delicious', 'Smith', 'Bloss
 var PlastNames  = ['Shy', 'Dash', 'Laurels', 'Skies', 'Chaser', 'Glider', 'Streak', 'Chill', 'Dust', 'Wind', 'Strike', 'Drop', 'Swoop', 'Hunter', 'Burst', 'Feather', 'Lane', 'Shot', 'Cloud', 'Clouds', 'Star', 'Break', 'Swirl', 'Falls', 'Spirits', 'Rays', 'Stream', 'Gale', 'Lights', 'Wing', 'Dancer'];
 var UlastNames  = ['Sparkle', 'Dis Lee', 'Lulamoon', 'Song', 'Dancer', 'Armor', 'Glimmer', 'Shimmer', 'Velvet', 'Light', 'Star', 'Moon', 'Bulb', 'Sun', 'Tail', 'Coronet', 'Gem', 'Shade', 'Ribbon', 'Swirl', 'Bright', 'Dream', 'Dreams', 'Shine', 'Gala', 'Fare'];
 
+var ETalents = ['Baking', 'Party planning', 'Orchard management', 'Jam-making', 'Performing music', 'Mining', 'Rock farming', 'Farming', 'Spa  coordinator', 'Receptionist', ];
+var PTalents = ['Formation flying', 'Weather control', 'Weather creation', 'Snowflake decorating', ];
+var UTalents = ['Dress making', 'Fashion', 'Library management', 'Institutional management', ];
+
 
 $(document).ready(function() {
   
 
-  creatures.push(new creature("Celestia","#FDF8FE", "EU", "N/A", 1.2));
+  creatures.push(new creature("Celestia","#FDF8FE", "EU", "N/A", 1.2, 'Raising the sun'));
   createNewDiv(creatures[creatures.length-1], creatures.length-1);
   
-  creatures.push(new creature("Luna","#404680", "EP", "N/A", 1.2));
+  creatures.push(new creature("Luna","#404680", "EP", "N/A", 1.2, 'Raising the moon'));
   createNewDiv(creatures[creatures.length-1], creatures.length-1);
   
 });
@@ -56,6 +60,8 @@ function createNewDiv (input, index) {
   var pictureBack = document.createElement('div');
   pictureBack.style.backgroundColor = input.colour;
   pictureBack.style.height = '191px';
+  pictureBack.style.position = 'relative';
+  pictureBack.style.bottom = '10px';
   
   var picture = document.createElement('object');
   if (input.name == "Celestia" || input.name == "Luna") {
@@ -71,8 +77,6 @@ function createNewDiv (input, index) {
   pictureBack.appendChild(picture);
   newDiv.appendChild(pictureBack);
   
-  var br = document.createElement('br');
-  newDiv.appendChild(br);
   
   var btn = document.createElement('BUTTON');
   btn.style.position = 'relative';
@@ -81,16 +85,16 @@ function createNewDiv (input, index) {
   var btnTxt = document.createTextNode("Breed");
   btn.appendChild(btnTxt);
 
-  
-  
   btn.onclick = function() {
     if (currentFather == null) {
       currentFather = newDiv.id;
       newDiv.style.color = "#f7ff00";
     } else {
       currentMother = newDiv.id;
-      if (currentMother != currentFather) {
+      if (currentMother != currentFather && happiness > 50) {
         Breed(currentFather, currentMother);
+        happiness += -50;
+        happinessTxt.nodeValue = "Happiness: " + happiness;
       }
       currentMother = null;
       currentFather = null;
@@ -99,6 +103,35 @@ function createNewDiv (input, index) {
       });  
     }
   }
+  
+  var br = document.createElement('br');
+  newDiv.appendChild(br);
+    
+  var petBtn = document.createElement('BUTTON');
+  newDiv.appendChild(petBtn);
+  var petBtnTxt = document.createTextNode("Pet");
+  petBtn.appendChild(petBtnTxt);
+
+  petBtn.onclick = function() {
+    if (happiness < 100) {
+      happiness += 10;    
+      happinessTxt.nodeValue = "Happiness: " + happiness;
+    }
+  }
+  
+  var br = document.createElement('br');
+  newDiv.appendChild(br);
+  
+  var happiness = 0;
+  var happinessTxt = document.createTextNode("Happiness: " + happiness);
+  setInterval(function(){
+    if (happiness < 100) {
+      happiness += 1;
+      happinessTxt.nodeValue = "Happiness: " + happiness;
+    }
+  }, 1000);
+  newDiv.appendChild(happinessTxt);
+  
   
   var br = document.createElement('br');
   newDiv.appendChild(br);
@@ -172,19 +205,22 @@ function Breed (father, mother) {
   switch (findSpecies(newSpecies)) {
     case "E":
       var newName = EfirstNames[Math.floor(Math.random() * EfirstNames.length)] + " " + ElastNames[Math.floor(Math.random() * ElastNames.length)];
+      var newTalent = ETalents[Math.floor(Math.random() * ETalents.length)];
       break;
     case "P":
       var newName = PfirstNames[Math.floor(Math.random() * PfirstNames.length)] + " " + PlastNames[Math.floor(Math.random() * PlastNames.length)];
+      var newTalent = PTalents[Math.floor(Math.random() * PTalents.length)];
       break;
     case "U":
       var newName = UfirstNames[Math.floor(Math.random() * UfirstNames.length)] + " " + UlastNames[Math.floor(Math.random() * UlastNames.length)];
+      var newTalent = UTalents[Math.floor(Math.random() * UTalents.length)];
       break;
   }
   
   var newParents = creatures[mother].name + " + " + creatures[father].name;
   var newHeight = (creatures[mother].height + creatures[father].height)/2  + Math.round(100*(Math.random()/100)-0.05)/100;
   
-  creatures.push(new creature(newName, newColour, newSpecies, newParents, newHeight));
+  creatures.push(new creature(newName, newColour, newSpecies, newParents, newHeight, newTalent));
   createNewDiv(creatures[creatures.length-1], creatures.length-1);
   
 }
@@ -206,10 +242,11 @@ function findSpecies (input) {
 }
 
 
-function creature (name, colour, species, parents, height) {
+function creature (name, colour, species, parents, height, talent) {
   this.name = name;
   this.colour = colour;
   this.species = species;
-  this.parents = parents; 
+  this.parents = parents;
   this.height = height;
+  this.talent = talent;
 }
