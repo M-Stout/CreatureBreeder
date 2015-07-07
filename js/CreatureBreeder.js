@@ -28,11 +28,12 @@ $(document).ready(function() {
   
   var customBtn = document.createElement('BUTTON');
   customBtn.style.position = 'absolute';
+  customBtn.onclick = customPony;
   document.body.appendChild(customBtn);
+  
   var customBtnTxt = document.createTextNode("Custom Pony Creator");
   customBtn.appendChild(customBtnTxt);
 
-  customBtn.onclick = customPony();
 
   
 });
