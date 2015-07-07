@@ -92,7 +92,7 @@ function createNewDiv (input, index) {
     } else {
       currentMother = newDiv.id;
       if (currentMother != currentFather) {
-        if (happiness > 50){
+        if (happiness >= 50){
           Breed(currentFather, currentMother);
           happiness += -50;
           happinessTxt.nodeValue = "Happiness: " + happiness;
