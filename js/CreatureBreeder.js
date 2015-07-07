@@ -116,7 +116,7 @@ function createNewDiv (input, index) {
 
   petBtn.onclick = function() {
     if (happiness < 100) {
-      happiness += 10;    
+      happiness += 1;    
       happinessTxt.nodeValue = "Happiness: " + happiness;
     }
   }
@@ -127,8 +127,12 @@ function createNewDiv (input, index) {
   var happiness = 0;
   var happinessTxt = document.createTextNode("Happiness: " + happiness);
   setInterval(function(){
-    if (happiness < 100) {
+    if (happiness < 50) {
       happiness += 1;
+      happinessTxt.nodeValue = "Happiness: " + happiness;
+    }
+    if (happiness > 50) {
+      happiness += -1;
       happinessTxt.nodeValue = "Happiness: " + happiness;
     }
   }, 1000);
