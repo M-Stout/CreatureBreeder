@@ -91,10 +91,12 @@ function createNewDiv (input, index) {
       newDiv.style.color = "#f7ff00";
     } else {
       currentMother = newDiv.id;
-      if (currentMother != currentFather && happiness > 50) {
-        Breed(currentFather, currentMother);
-        happiness += -50;
-        happinessTxt.nodeValue = "Happiness: " + happiness;
+      if (currentMother != currentFather) {
+        if (happiness > 50){
+          Breed(currentFather, currentMother);
+          happiness += -50;
+          happinessTxt.nodeValue = "Happiness: " + happiness;
+        } else {alert("A creature needs more than 50 happiness to breed!")}
       }
       currentMother = null;
       currentFather = null;
@@ -155,6 +157,12 @@ function createNewDiv (input, index) {
   
   var br = document.createElement('br');
   newDiv.appendChild(br);
+    
+  var colourTxt = document.createTextNode("Coat colour: " + ntc.name(String(input.colour))[1]);
+  newDiv.appendChild(colourTxt);
+  
+  var br = document.createElement('br');
+  newDiv.appendChild(br);
   
   var speciesTxt = document.createTextNode("Species Alleles: " + input.species);
   newDiv.appendChild(speciesTxt);
@@ -174,6 +182,12 @@ function createNewDiv (input, index) {
     var heightTxt = document.createTextNode("Height: " + input.height);
   }
   newDiv.appendChild(heightTxt);
+  
+  var br = document.createElement('br');
+  newDiv.appendChild(br);
+  
+  var talentTxt = document.createTextNode("Special talent: " + input.talent);
+  newDiv.appendChild(talentTxt);
   
 }
 
