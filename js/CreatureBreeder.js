@@ -25,6 +25,16 @@ $(document).ready(function() {
   creatures.push(new creature("Luna","#404680", "EP", "N/A", 1.2, 'Raising the moon'));
   createNewDiv(creatures[creatures.length-1], creatures.length-1);
   
+  
+  var customBtn = document.createElement('BUTTON');
+  customBtn.style.position = 'absolute';
+  document.body.appendChild(customBtn);
+  var customBtnTxt = document.createTextNode("Custom Pony Creator");
+  customBtn.appendChild(customBtnTxt);
+
+  customBtn.onclick = customPony();
+
+  
 });
 
 
@@ -277,4 +287,19 @@ function creature (name, colour, species, parents, height, talent) {
   this.parents = parents;
   this.height = height;
   this.talent = talent;
+}
+
+
+function customPony() {
+  
+  var promptName = prompt("To insert custom pony insert details.\nName (e.g Luna): " );
+  var promptColour = prompt("To insert custom pony insert details.\nColour (e.g. #404680): " );
+  var promptSpecies = prompt("To insert custom pony insert details.\nSpecies (e.g. EP): " );
+  var promptParents = prompt("To insert custom pony insert details.\nParents (e.g. Luna + Celestia):" );
+  var promptHeight = prompt("To insert custom pony insert details.\nHeight (e.g. 1.2): " );
+  var promptTalent = prompt("To insert custom pony insert details.\nTalent (e.g. Raising the moon): " );
+  
+  creatures.push(new creature(promptName, promptColour, promptSpecies, promptParents, promptHeight, promptTalent));
+  createNewDiv(creatures[creatures.length-1], creatures.length-1);
+  
 }
