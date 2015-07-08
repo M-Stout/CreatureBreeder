@@ -3,6 +3,20 @@ body {
     background-attachment: fixed;
 }
 
+#header {
+
+  position: fixed;
+  border-bottom: 1px solid #464646;
+  color: #464646;
+  background-color: #ffffff;
+  width: 100%;
+  height: 25px;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+
+}
+
 .creatureDiv {
 
   width: 300px;

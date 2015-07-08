@@ -15,19 +15,30 @@ var ETalents = ['Baking', 'Party planning', 'Orchard management', 'Jam-making', 
 var PTalents = ['Formation flying', 'Weather control', 'Weather creation', 'Snowflake decorating', ];
 var UTalents = ['Dress making', 'Fashion', 'Library management', 'Institutional management', 'Performing music', ];
 
+var atmosphericHappiness = 0;
+
 
 $(document).ready(function() {
   
   var customBtn = document.createElement('BUTTON');
   customBtn.style.position = 'absolute';
-  customBtn.style.left = '0px';
+  customBtn.style.left = '10px';
   customBtn.onclick = customPony;
-  document.body.appendChild(customBtn);
+  document.getElementById("header").appendChild(customBtn);
   
   var customBtnTxt = document.createTextNode("Custom Pony Creator");
   customBtn.appendChild(customBtnTxt);
   
   
+  var atmosphericHappinessTxt = document.createTextNode("Atmospheric Happiness: " + atmosphericHappiness);
+  var atmosphericHappinessTxtDiv = document.createElement('div');
+  atmosphericHappinessTxtDiv.style.float = 'right';
+  atmosphericHappinessTxtDiv.appendChild(atmosphericHappinessTxt);
+  document.getElementById("header").appendChild(atmosphericHappinessTxtDiv);
+  
+  setInterval(function(){
+    atmosphericHappinessTxt.nodeValue = "Atmospheric Happiness: " + atmosphericHappiness;
+  }, 1000);
 
   creatures.push(new creature("Celestia","#FDF8FE", "Eu", "N/A", 1.2, 'Raising the sun'));
   createNewDiv(creatures[creatures.length-1], creatures.length-1);
@@ -154,6 +165,7 @@ function createNewDiv (input, index) {
     if (happiness > 50) {
       happiness += -1;
       happinessTxt.nodeValue = "Happiness: " + happiness;
+      atmosphericHappiness += 1;
     }
   }, 1000);
   newDiv.appendChild(happinessTxt);
