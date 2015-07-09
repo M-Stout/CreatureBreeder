@@ -413,7 +413,8 @@ function Breed (father, mother) {
   }
   
   var newParents = creatures[mother].name + " + " + creatures[father].name;
-  var newHeight = (creatures[mother].height + creatures[father].height)/2  + Math.round(100*(Math.random()/100)-0.05)/100;
+  var newHeightUnRounded = (creatures[mother].height + creatures[father].height)/2  + Math.round(100*(Math.random()/100)-0.05)/100;
+  var newHeight = Math.round( newHeightUnRounded * 1000 ) / 1000;
   
   creatures.push(new creature(newName, newColour, newSpecies, newParents, newHeight, newTalent));
   createNewDiv(creatures[creatures.length-1], creatures.length-1);
