@@ -66,3 +66,28 @@ body {
   
 
 }
+
+
+/* Preloader */
+#preloader {
+	position: fixed;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background-color:#fff; /* change if the mask should have another color then white */
+	z-index:999; /* makes sure it stays on top */
+}
+
+#status {
+	width:50%;
+	height:50%;
+	position:absolute;
+	left:25%; /* centers the loading animation horizontally one the screen */
+	top:25%; /* centers the loading animation vertically one the screen */
+	background-image:url(images/preloader.gif); /* path to your loading animation */
+  background-size: contain;
+	background-repeat:no-repeat;
+	background-position:center;
+	margin:0px 0 0 0px; /* is width and height divided by two */
+}
