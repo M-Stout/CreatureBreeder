@@ -230,7 +230,7 @@ function createNewDiv (input, index) {
           Breed(currentFather, currentMother);
           happiness += -50;
           happinessTxt.nodeValue = "Happiness: " + happiness;
-        } else {alert("A creature needs more than 50 happiness to breed!")}
+        } else {alert("The second pony you click has to have 50 happiness to lose for breeding to work!")}
       }
       currentMother = null;
       currentFather = null;
