@@ -11,35 +11,49 @@ var ElastNames  = ['Jack', 'Pie', 'Pie', 'Jubilee', 'Delicious', 'Smith', 'Bloss
 var PlastNames  = ['Shy', 'Dash', 'Laurels', 'Skies', 'Chaser', 'Glider', 'Streak', 'Chill', 'Dust', 'Wind', 'Strike', 'Drop', 'Swoop', 'Hunter', 'Burst', 'Feather', 'Lane', 'Shot', 'Cloud', 'Clouds', 'Star', 'Break', 'Swirl', 'Falls', 'Spirits', 'Rays', 'Stream', 'Gale', 'Lights', 'Wing', 'Dancer', 'Breeze', 'Rocket', 'Sunset',];
 var UlastNames  = ['Sparkle', 'Dis Lee', 'Lulamoon', 'Song', 'Dancer', 'Armor', 'Glimmer', 'Shimmer', 'Velvet', 'Light', 'Star', 'Moon', 'Bulb', 'Sun', 'Tail', 'Coronet', 'Gem', 'Shade', 'Ribbon', 'Swirl', 'Bright', 'Dream', 'Dreams', 'Shine', 'Gala', 'Fare', 'Equinox', 'Dawn', 'Opal', 'Topaz', 'Aura',];
 
-var ETalents = ['Baking', 'Party planning', 'Orchard management', 'Jam-making', 'Performing music', 'Mining', 'Rock farming', 'Farming', 'Spa  coordinator', 'Receptionist', ];
+var ETalents = ['Baking', 'Party planning', 'Orchard management', 'Jam-making', 'Performing music', 'Mining', 'Rock farming', 'Farming', 'Spa coordinator', 'Receptionist', ];
 var PTalents = ['Formation flying', 'Weather control', 'Weather creation', 'Snowflake decorating', ];
 var UTalents = ['Dress making', 'Fashion', 'Library management', 'Institutional management', 'Performing music', ];
 
 var atmosphericHappiness = 0;
 
 
+
 $(document).ready(function() {
   
   var customBtn = document.createElement('BUTTON');
-  customBtn.style.position = 'absolute';
-  customBtn.style.left = '10px';
+  customBtn.style.float = 'left';
+  customBtn.style.margin = '2px';
   customBtn.onclick = customPony;
   document.getElementById("header").appendChild(customBtn);
   
   var customBtnTxt = document.createTextNode("Custom Pony Creator");
   customBtn.appendChild(customBtnTxt);
   
+  var helpBtn = document.createElement('BUTTON');
+  helpBtn.style.float = 'left';
+  helpBtn.style.margin = '2px';
+  helpBtn.onclick = function() { window.open('help/help.pdf'); } 
+  document.getElementById("header").appendChild(helpBtn);
+  
+  var helpBtnTxt = document.createTextNode("Help");
+  helpBtn.appendChild(helpBtnTxt);
   
   var atmosphericHappinessTxt = document.createTextNode("Atmospheric Happiness: " + atmosphericHappiness);
   var atmosphericHappinessTxtDiv = document.createElement('div');
   atmosphericHappinessTxtDiv.style.float = 'right';
+  atmosphericHappinessTxtDiv.style.margin = '2px';
   atmosphericHappinessTxtDiv.appendChild(atmosphericHappinessTxt);
   document.getElementById("header").appendChild(atmosphericHappinessTxtDiv);
   
   setInterval(function(){
     atmosphericHappinessTxt.nodeValue = "Atmospheric Happiness: " + atmosphericHappiness;
   }, 1000);
-
+  
+  
+  ponyWantedGenerator();
+  
+  
   creatures.push(new creature("Celestia","#FDF8FE", "Eu", "N/A", 1.2, 'Raising the sun'));
   createNewDiv(creatures[creatures.length-1], creatures.length-1);
   
@@ -47,6 +61,95 @@ $(document).ready(function() {
   createNewDiv(creatures[creatures.length-1], creatures.length-1);
     
 });
+
+  var ponyWantedColour;
+  var ponyWantedSpecies;
+
+function ponyWantedGenerator() {
+    
+  newPonyWanted();
+     
+  var ponyWantedBtn = document.createElement('BUTTON');
+  ponyWantedBtn.id = "ponyWantedBtn";
+  ponyWantedBtn.style.float = 'right';
+  ponyWantedBtn.style.margin = '2px';
+  ponyWantedBtn.onclick = function() {$("#ponyWantedDiv").toggle();}
+  document.getElementById("header").appendChild(ponyWantedBtn);
+  var ponyWantedBtnTxt = document.createTextNode("Pony Wanted");
+  ponyWantedBtn.appendChild(ponyWantedBtnTxt);
+  
+  
+  var ponyWantedDiv = document.createElement('div');
+  ponyWantedDiv.id = 'ponyWantedDiv';
+  ponyWantedDiv.className = 'ponyWantedDiv';
+  ponyWantedDiv.style.float = 'right';
+  ponyWantedDiv.style.margin = '2px';
+  
+  var ponyWantedTxt = document.createTextNode("Pony Wanted: ");
+  var ponyWantedTxts = ["Pony Wanted: ", "pls make my OC: ", "I request a specific pony: ", "Pony Required: "];
+  ponyWantedTxt.nodeValue = ponyWantedTxts[Math.floor(Math.random() * ponyWantedTxts.length)]; 
+  ponyWantedDiv.appendChild(ponyWantedTxt);
+  
+  var br = document.createElement('br');
+  ponyWantedDiv.appendChild(br);
+  var br = document.createElement('br');
+  ponyWantedDiv.appendChild(br);
+  
+  var ponyWantedColourTxt = document.createTextNode("Colour: " + ponyWantedColour);
+  ponyWantedDiv.appendChild(ponyWantedColourTxt);
+  
+  var br = document.createElement('br');
+  ponyWantedDiv.appendChild(br);
+  
+  var ponyWantedSpeciesTxt = document.createTextNode("Species: " + ponyWantedSpecies);
+  ponyWantedDiv.appendChild(ponyWantedSpeciesTxt);
+  
+  var br = document.createElement('br');
+  ponyWantedDiv.appendChild(br);
+  var br = document.createElement('br');
+  ponyWantedDiv.appendChild(br);
+  
+  var ponyWantedRewardTxt = document.createTextNode("Reward: 1000 Atmospheric Happiness");
+  ponyWantedDiv.appendChild(ponyWantedRewardTxt);
+  
+  var discardBtn = document.createElement('BUTTON');
+  discardBtn.style.float = "right";
+  ponyWantedDiv.appendChild(discardBtn);
+  var discardBtnTxt = document.createTextNode("Discard");
+  discardBtn.appendChild(discardBtnTxt);  
+  
+  discardBtn.onclick = function() {
+    updatePonyWanted();
+  }
+  
+  document.getElementById("header").appendChild(ponyWantedDiv);
+  
+  function newPonyWanted () {
+    
+    ponyWantedColour = ntc.names[Math.floor(Math.random() * ntc.names.length)][1];
+    var ponyWantedSpeciesRandom = Math.floor(Math.random() * 3);
+    switch (ponyWantedSpeciesRandom) {
+      case 0:
+        ponyWantedSpecies = "E";
+        break;
+      case 1:
+        ponyWantedSpecies = "P";
+        break;
+      case 2:
+        ponyWantedSpecies = "U";
+        break;
+    }
+  }
+  
+  function updatePonyWanted(){
+    newPonyWanted();
+    
+    ponyWantedTxt.nodeValue = ponyWantedTxts[Math.floor(Math.random() * ponyWantedTxts.length)]; 
+    ponyWantedColourTxt.nodeValue = "Colour: " + ponyWantedColour;
+    ponyWantedSpeciesTxt.nodeValue = "Species: " + ponyWantedSpecies;
+  }
+  
+}
 
 
 function createNewDiv (input, index) {
@@ -217,8 +320,10 @@ function createNewDiv (input, index) {
   var br = document.createElement('br');
   newDiv.appendChild(br);
   
-  if (input.name == "Celestia" || input.name == "Luna") {
+  if (input.name == "Celestia") {
     var heightTxt = document.createTextNode("Height: " + 1.8);
+  } else if (input.name == "Luna") {
+    var heightTxt = document.createTextNode("Height: " + 1.6);    
   } else {
     var heightTxt = document.createTextNode("Height: " + input.height);
   }
@@ -229,6 +334,24 @@ function createNewDiv (input, index) {
   
   var talentTxt = document.createTextNode("Special talent: " + input.talent);
   newDiv.appendChild(talentTxt);
+  
+  
+  var sendBtn = document.createElement('BUTTON');
+  sendBtn.style.float = "left";
+  sendBtn.style.bottom = "0px";  
+  newDiv.appendChild(sendBtn);
+  var sendBtnTxt = document.createTextNode("Send");
+  sendBtn.appendChild(sendBtnTxt);
+  
+  sendBtn.onclick = function() {
+    if(ntc.name(String(input.colour))[1] == ponyWantedColour && findSpecies(input.species) == ponyWantedSpecies) {
+      atmosphericHappiness += 1000;
+      document.body.removeChild(newDiv);
+      alert("Pony successfully sent!");
+    } else {
+      alert("This pony is not a match for the one wanted!\nKeep trying.");
+    }
+  }
   
 }
 

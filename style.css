@@ -48,3 +48,21 @@ body {
   position: relative;
   
 }
+
+.ponyWantedDiv {
+
+  display: none;
+
+  position: absolute;
+  
+  border: 1px solid #464646;
+  color: #464646;
+  background-color: #ffffff;
+  width: 200px;
+  height: 225px;
+  top: 30px;
+  right: 150px;
+  z-index: 1000;
+  
+
+}
